@@ -1,6 +1,1 @@
-{
-    "app_name": "minesweeper",
-    "version": "0.1.0",
-    "build_number": "010",
-    "package_name": "minesweeper"
-}
+{"app_name":"minesweeper","version":"0.1.0","build_number":"010","package_name":"minesweeper"}

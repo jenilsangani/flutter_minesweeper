@@ -4,42 +4,42 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "assets/AssetManifest.json": "99914b932bd37a50b983c5e7c90ae93b",
-  "assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
-  "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-  "assets/NOTICES": "aa02899f364e315af5eb20027ea0585a",
-  "canvaskit/canvaskit.js": "43fa9e17039a625450b6aba93baf521e",
-  "canvaskit/canvaskit.wasm": "04ed3c745ff1dee16504be01f9623498",
-  "canvaskit/profiling/canvaskit.js": "f3bfccc993a1e0bfdd3440af60d99df4",
-  "canvaskit/profiling/canvaskit.wasm": "a9610cf39260f60fbe7524a785c66101",
-  "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-  "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-  "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
-  "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
-  "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-  "index.html": "ac4cfb25093a875832926b108436b475",
-  "/": "ac4cfb25093a875832926b108436b475",
-  "main.dart.js": "74001dc4a9a9058b6e7b84a8fb17a1b2",
-  "manifest.json": "a9733c53596bf0a0292009f1c78743f1",
-  "splash/style.css": "288e11ff34f12039634a05e1ca1a97bd",
-  "version.json": "9046f2378c956f2dd92873d506469675"
+"assets/FontManifest.json": "7b2a36307916a9721811788013e65289",
+"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
+"assets/NOTICES": "aa02899f364e315af5eb20027ea0585a",
+"canvaskit/canvaskit.js": "43fa9e17039a625450b6aba93baf521e",
+"canvaskit/canvaskit.wasm": "04ed3c745ff1dee16504be01f9623498",
+"canvaskit/profiling/canvaskit.js": "f3bfccc993a1e0bfdd3440af60d99df4",
+"canvaskit/profiling/canvaskit.wasm": "a9610cf39260f60fbe7524a785c66101",
+"favicon.png": "5dcef449791fa27946b3d35ad8803796",
+"icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
+"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
+"icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
+"icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
+"index.html": "ac4cfb25093a875832926b108436b475",
+"/": "ac4cfb25093a875832926b108436b475",
+"main.dart.js": "74001dc4a9a9058b6e7b84a8fb17a1b2",
+"manifest.json": "a9733c53596bf0a0292009f1c78743f1",
+"splash/style.css": "288e11ff34f12039634a05e1ca1a97bd",
+"version.json": "9046f2378c956f2dd92873d506469675"
 };
 
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
   "/",
-  "main.dart.js",
-  "index.html",
-  "assets/NOTICES",
-  "assets/AssetManifest.json",
-  "assets/FontManifest.json"];
+"main.dart.js",
+"index.html",
+"assets/NOTICES",
+"assets/AssetManifest.json",
+"assets/FontManifest.json"];
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
       return cache.addAll(
-        CORE.map((value) => new Request(value, { 'cache': 'reload' })));
+        CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
@@ -47,8 +47,8 @@ self.addEventListener("install", (event) => {
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
 // MANIFEST, then use this to retain unchanged resource files.
-self.addEventListener("activate", function (event) {
-  return event.waitUntil(async function () {
+self.addEventListener("activate", function(event) {
+  return event.waitUntil(async function() {
     try {
       var contentCache = await caches.open(CACHE_NAME);
       var tempCache = await caches.open(TEMP);
@@ -126,7 +126,7 @@ self.addEventListener("fetch", (event) => {
     return onlineFirst(event);
   }
   event.respondWith(caches.open(CACHE_NAME)
-    .then((cache) => {
+    .then((cache) =>  {
       return cache.match(event.request).then((response) => {
         // Either respond with the cached resource, or perform a fetch and
         // lazily populate the cache.
